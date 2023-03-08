@@ -1,0 +1,6 @@
+#!/bin/bash
+set -ex
+
+cat << 'EOF' > /etc/issue.net
+<%= p('login-banner.text') %>
+EOF

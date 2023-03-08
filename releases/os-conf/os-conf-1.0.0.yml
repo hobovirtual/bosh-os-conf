@@ -1,0 +1,7 @@
+name: os-conf
+version: 1.0.0 
+uncommitted_changes: false
+
+jobs:
+- name: login-banner
+  packages: []
