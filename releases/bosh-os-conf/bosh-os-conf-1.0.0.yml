@@ -4,4 +4,6 @@ uncommitted_changes: false
 
 jobs:
 - name: login-banner
+  fingerprint: f41a383d071d5186cbe56d04830561f304b53bf33f93a432ba6d7694f9a38301
+  sha1: sha256:2959b98aa9a76a4a57c195135ed26d1ea0195e2a25195774991382719e9dbb1c
   packages: []
