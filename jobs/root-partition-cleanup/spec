@@ -1,0 +1,7 @@
+---
+name: root-partition-cleanup
+
+templates:
+  pre-start.sh.erb: bin/pre-start
+
+packages: []
