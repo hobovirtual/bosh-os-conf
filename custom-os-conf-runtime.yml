@@ -1,0 +1,21 @@
+releases:
+- name: custom-os-conf
+  version: 1.0.0
+
+addons:
+- name: os-login-banner
+  jobs:
+  - name: login-banner
+    release: custom-os-conf
+    properties:
+      login-banner:
+        text: |
+          # ---------------------------------------------------------------- #
+            Unauthorized use is strictly prohibited. All access and activity
+            is subject to logging and monitoring
+            Please be aware..........
+          # ---------------------------------------------------------------- #
+- name: os-root-partition-cleanup
+  jobs:
+  - name: root-partition-cleanup
+    release: custom-os-conf
