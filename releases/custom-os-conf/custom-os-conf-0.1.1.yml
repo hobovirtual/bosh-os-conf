@@ -1,0 +1,9 @@
+name: custom-os-conf
+version: 0.1.1
+uncommitted_changes: false
+
+jobs:
+- name: login-banner
+  packages: []
+- name: root-partition-cleanup
+  packages: []
