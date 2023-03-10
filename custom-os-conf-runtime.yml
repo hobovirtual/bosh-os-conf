@@ -19,3 +19,7 @@ addons:
   jobs:
   - name: root-partition-cleanup
     release: custom-os-conf
+    properties:
+      script: |
+        #!/bin/bash
+        cp bin/root-partition-cleanup.sh /etc/cron.hourly/.

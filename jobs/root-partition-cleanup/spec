@@ -9,6 +9,6 @@ packages: []
 properties:
   script:
     description: Script that is run during pre-start to allow additional setup of environment, run as root user.
-    example: |-
+    example: |
         #!/bin/bash
-        cp bin/root-partition-cleanup.sh /etc/cron.hourly/.
+        echo "this is a test"
