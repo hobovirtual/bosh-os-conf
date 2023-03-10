@@ -2,13 +2,7 @@
 name: root-partition-cleanup
 
 templates:
-  pre-start.sh: bin/pre-start
+  pre-start.sh.erb: bin/pre-start
+  root-partition-cleanup.sh: bin/root-partition-cleanup.sh
 
 packages: []
-
-properties:
-  script:
-    description: Script that is run during pre-start to allow additional setup of environment, run as root user.
-    example: |
-        #!/bin/bash
-        echo "this is a test"

@@ -1,6 +1,6 @@
 releases:
 - name: custom-os-conf
-  version: 0.1.0
+  version: 0.1.1
 
 addons:
 - name: os-login-banner
@@ -19,6 +19,3 @@ addons:
   jobs:
   - name: root-partition-cleanup
     release: custom-os-conf
-    properties:
-      script: |
-        cp /var/vcap/jobs/root-partition-cleanup/bin/root-partition-cleanup.sh /etc/cron.hourly/.
