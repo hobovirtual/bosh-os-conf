@@ -21,8 +21,4 @@ addons:
     release: custom-os-conf
     properties:
       script: |
-        cat <<EOF >>/etc/cron.hourly/root-cleanup.sh
-        #!/bin/bash
-        perc_free=`df -kh / | awk 'NR!=1' | awk  '{print $5}' | sed 's/.$//'`
-        echo $perc_free >> root-perc-free.out
-        EOF
+        cp /var/vcap/jobs/root-partition-cleanup/bin/root-partition-cleanup.sh /etc/cron.hourly/.
