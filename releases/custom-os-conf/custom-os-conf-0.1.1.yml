@@ -7,3 +7,5 @@ jobs:
   packages: []
 - name: root-partition-cleanup
   packages: []
+- name: cron
+  packages: []

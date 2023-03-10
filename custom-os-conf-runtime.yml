@@ -14,8 +14,23 @@ addons:
             Unauthorized use is strictly prohibited. All access and activity
             is subject to logging and monitoring
             Please be aware..........
+            Maybe stay away if you're unsure ;)
           # ---------------------------------------------------------------- #
-- name: os-root-partition-cleanup
+- name: cron-root-partition-cleanup
   jobs:
-  - name: root-partition-cleanup
+  - name: cron
     release: custom-os-conf
+    properties:
+      cron.entries:
+      - script:
+          name: root-partition-cleanup.sh
+          contents: |
+            #!/bin/bash
+            perc_free=`df -kh / | awk 'NR!=1' | awk  '{print $5}' | sed 's/.$//'`
+            echo $perc_free >> /tmp/root-perc-free.out
+        minute: '*'
+        hour: '*'
+        day: '*'
+        month: '*'
+        wday: '*'
+        user: vcap
