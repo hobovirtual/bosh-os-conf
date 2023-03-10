@@ -1,0 +1,54 @@
+---
+name: cron
+
+description: |
+  This BOSH job creates a customized crontab, and installs it for the host OS's cron
+  process to manage. Upon stopping, it should clean up after itself
+
+packages: []
+templates:
+  bin/cron_ctl: bin/cron_ctl
+  bin/sleeper: bin/sleeper
+  bin/setup_crontab.erb: bin/setup_crontab
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+properties:
+  cron.variables:
+    description: A key-value map of environment variables that should be set in the crontab
+    example:
+      PATH: /var/vcap/package/mypackage/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
+      HOME: /home/vcap
+  cron.entries:
+    description: |
+      A list of key-value objects representing cron entries. Each entry must contain
+      properties for 'minute', 'hour', 'day', 'month', 'wday', 'user', and 'command'. These
+      properties are directly injected into the crontab, and should follow cron syntax
+      conventions.
+
+      If command is specified, that path is executed by cron and must already exist.
+      If script is specified, the contents of that key are written out to disk and executed by cron.
+
+      If command and script are specified for the same entry, the contents of script will be executed, and command ignored
+
+      If lock is specified, the cronjob will be wrapped by flock(1) -n ensuring only one instance runs at a time.
+
+      If a hash of variables is specified, the cronjob will run with those environment variables.
+    example:
+    - command: /var/vcap/packages/mypackage/bin/myhourlyscript
+      lock: /var/vcap/sys/run/cron/myhourly.lock
+      script:
+        name: touch.sh
+        contents: |
+          #!/bin/bash
+
+          touch /tmp/i-am-running
+
+      minute: 0
+      hour: '*'
+      day: '*'
+      month: '*'
+      wday: '*'
+      user: root
